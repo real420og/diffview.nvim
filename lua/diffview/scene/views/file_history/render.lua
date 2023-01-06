@@ -43,7 +43,7 @@ end
 ---@param parent CompStruct RenderComponent struct
 ---@param entries LogEntry[]
 ---@param updating boolean
-local function render_entries(parent, entries, updating)
+local function render_entries(parent, entries, updating, summary_size)
   local c = config.get_config()
   local max_num_files = -1
   local max_len_stats = 7
@@ -106,7 +106,7 @@ local function render_entries(parent, entries, updating)
       comp:add_text(("(%s) "):format(entry.commit.ref_names), "DiffviewReference")
     end
 
-    local subject = utils.str_shorten(entry.commit.subject, 72)
+    local subject = utils.str_shorten(entry.commit.subject, summary_size)
 
     if subject == "" then
       subject = "[empty message]"
@@ -222,7 +222,7 @@ return {
     perf:lap("header")
 
     if #panel.entries > 0 then
-      render_entries(panel.components.log.entries, panel.entries, panel.updating)
+      render_entries(panel.components.log.entries, panel.entries, panel.updating, log_options.summary_size)
     end
 
     perf:time()

@@ -243,6 +243,7 @@ M._config = M.defaults
 ---@field S string
 ---@field diff_merges string
 ---@field rev_range string
+---@field summary_size integer
 ---@field base string
 ---@field path_args string[]
 
@@ -262,6 +263,7 @@ M.log_option_defaults = {
     no_merges = false,
     reverse = false,
     rev_range = nil,
+    summary_size = 72,
     base = nil,
     max_count = 256,
     L = {},
