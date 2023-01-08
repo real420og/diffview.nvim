@@ -178,7 +178,7 @@ function M.next_conflict()
         local curwin = api.nvim_get_current_win()
 
         api.nvim_win_call(main.id, function()
-          api.nvim_win_set_cursor(main.id, { next_conflict.first, 0 })
+          api.nvim_win_set_cursor(main.id, { next_conflict.first + 1, 0 })
           if curwin ~= main.id then view.cur_layout:sync_scroll() end
         end)
 
@@ -209,7 +209,7 @@ function M.prev_conflict()
         local curwin = api.nvim_get_current_win()
 
         api.nvim_win_call(main.id, function()
-          api.nvim_win_set_cursor(main.id, { prev_conflict.first, 0 })
+          api.nvim_win_set_cursor(main.id, { prev_conflict.first + 1, 0 })
           if curwin ~= main.id then view.cur_layout:sync_scroll() end
         end)
 
