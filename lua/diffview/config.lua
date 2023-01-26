@@ -193,6 +193,7 @@ M.defaults = {
       { "n", "<down>",        actions.next_entry,                  { desc = "Bring the cursor to the next file entry" } },
       { "n", "k",             actions.prev_entry,                  { desc = "Bring the cursor to the previous file entry." } },
       { "n", "<up>",          actions.prev_entry,                  { desc = "Bring the cursor to the previous file entry." } },
+      { "n", "e",             actions.edit_select_entry,           { desc = "Open files in a new buffers in the previous tabpage" } },
       { "n", "<cr>",          actions.select_entry,                { desc = "Open the diff for the selected entry." } },
       { "n", "o",             actions.select_entry,                { desc = "Open the diff for the selected entry." } },
       { "n", "<2-LeftMouse>", actions.select_entry,                { desc = "Open the diff for the selected entry." } },
