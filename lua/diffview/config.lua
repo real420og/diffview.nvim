@@ -116,6 +116,7 @@ M.defaults = {
       { "n", "<tab>",      actions.select_next_entry,          { desc = "Open the diff for the next file" } },
       { "n", "<s-tab>",    actions.select_prev_entry,          { desc = "Open the diff for the previous file" } },
       { "n", "gf",         actions.goto_file,                  { desc = "Open the file in a new split in the previous tabpage" } },
+      { "n", "ge",         actions.goto_file_edit,             { desc = "Open the file in a new buffers in the previous tabpage" } },
       { "n", "<C-w><C-f>", actions.goto_file_split,            { desc = "Open the file in a new split" } },
       { "n", "<C-w>gf",    actions.goto_file_tab,              { desc = "Open the file in a new tabpage" } },
       { "n", "<leader>e",  actions.focus_files,                { desc = "Bring focus to the file panel" } },
@@ -168,6 +169,7 @@ M.defaults = {
       { "n", "<tab>",         actions.select_next_entry,    { desc = "Open the diff for the next file" } },
       { "n", "<s-tab>",       actions.select_prev_entry,    { desc = "Open the diff for the previous file" } },
       { "n", "gf",            actions.goto_file,            { desc = "Open the file in a new split in the previous tabpage" } },
+      { "n", "ge",            actions.goto_file_edit,       { desc = "Open the file in a new buffers in the previous tabpage" } },
       { "n", "<C-w><C-f>",    actions.goto_file_split,      { desc = "Open the file in a new split" } },
       { "n", "<C-w>gf",       actions.goto_file_tab,        { desc = "Open the file in a new tabpage" } },
       { "n", "i",             actions.listing_style,        { desc = "Toggle between 'list' and 'tree' views" } },
@@ -191,6 +193,7 @@ M.defaults = {
       { "n", "<down>",        actions.next_entry,                  { desc = "Bring the cursor to the next file entry" } },
       { "n", "k",             actions.prev_entry,                  { desc = "Bring the cursor to the previous file entry." } },
       { "n", "<up>",          actions.prev_entry,                  { desc = "Bring the cursor to the previous file entry." } },
+      { "n", "e",             actions.edit_select_entry,           { desc = "Open files in a new buffers in the previous tabpage" } },
       { "n", "<cr>",          actions.select_entry,                { desc = "Open the diff for the selected entry." } },
       { "n", "o",             actions.select_entry,                { desc = "Open the diff for the selected entry." } },
       { "n", "<2-LeftMouse>", actions.select_entry,                { desc = "Open the diff for the selected entry." } },
@@ -199,6 +202,7 @@ M.defaults = {
       { "n", "<tab>",         actions.select_next_entry,           { desc = "Open the diff for the next file" } },
       { "n", "<s-tab>",       actions.select_prev_entry,           { desc = "Open the diff for the previous file" } },
       { "n", "gf",            actions.goto_file,                   { desc = "Open the file in a new split in the previous tabpage" } },
+      { "n", "ge",            actions.goto_file_edit,              { desc = "Open the file in a new buffers in the previous tabpage" } },
       { "n", "<C-w><C-f>",    actions.goto_file_split,             { desc = "Open the file in a new split" } },
       { "n", "<C-w>gf",       actions.goto_file_tab,               { desc = "Open the file in a new tabpage" } },
       { "n", "<leader>e",     actions.focus_files,                 { desc = "Bring focus to the file panel" } },
@@ -240,6 +244,7 @@ M._config = M.defaults
 ---@field S string
 ---@field diff_merges string
 ---@field rev_range string
+---@field summary_size integer
 ---@field base string
 ---@field path_args string[]
 
@@ -259,6 +264,7 @@ M.log_option_defaults = {
     no_merges = false,
     reverse = false,
     rev_range = nil,
+    summary_size = 72,
     base = nil,
     max_count = 256,
     L = {},

@@ -96,6 +96,28 @@ return function(view)
     prev_entry = function()
       view.panel:highlight_prev_item()
     end,
+    edit_select_entry = function()
+      if view.panel:is_focused() then
+        local item = view.panel:get_item_at_cursor()
+        if item then
+          if item.files then
+            if view.panel.single_file then
+              view:set_file(item.files[1], false)
+            else
+              local target_tab = lib.get_prev_non_view_tabpage()
+
+              if target_tab then
+                  vim.api.nvim_set_current_tabpage(target_tab)
+                  for _, entry in ipairs(item.files) do
+                    -- require("notify")(vim.inspect(entry.absolute_path))
+                    vim.cmd("edit " .. vim.fn.fnameescape(entry.absolute_path))
+                  end
+              end
+            end
+          end
+        end
+      end
+    end,
     select_entry = function()
       if view.panel:is_focused() then
         local item = view.panel:get_item_at_cursor()
